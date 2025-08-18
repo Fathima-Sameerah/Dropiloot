@@ -9,16 +9,12 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-   public function up()
-{
-    Schema::table('users', function (Blueprint $table) {
-        if (!Schema::hasColumn('users', 'phone')) {
-            $table->string('phone')->unique()->nullable()->after('email');
-        }
-    });
-}
-
-
+    public function up(): void
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('reward_points')->default(0);
+        });
+    }
 
     /**
      * Reverse the migrations.
@@ -26,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('phone');
+            //
         });
     }
 };
